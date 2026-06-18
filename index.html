@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday 🎂</title>
+<title> Happy Birthday 🎂</title>
 
 <style>
 body {
@@ -18,9 +18,46 @@ body {
 }
 
 .container {
-    text-align: center;
-    color: white;
-    animation: fadeIn 2s ease-in-out;
+text-align: center;
+color: white;
+padding: 40px;
+border-radius: 30px;
+background: rgba(255,255,255,0.15);
+backdrop-filter: blur(15px);
+box-shadow: 0 8px 32px rgba(0,0,0,.15);
+
+```
+.container {
+text-align: center;
+color: white;
+padding: 40px;
+border-radius: 30px;
+background: rgba(255,255,255,0.15);
+backdrop-filter: blur(15px);
+box-shadow: 0 8px 32px rgba(0,0,0,.15);
+
+```
+animation:
+    fadeIn 2s ease,
+    floating 6s ease-in-out infinite;
+```
+
+}
+
+```
+
+}
+
+@keyframes floating {
+0%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-10px);
+}
+100%{
+transform:translateY(0);
+}
 }
 
 h1 {
@@ -66,28 +103,80 @@ button:hover {
     0% {transform: translateY(0); opacity: 1;}
     100% {transform: translateY(-100vh); opacity: 0;}
 }
+#musicBtn{
+position: fixed;
+bottom: 20px;
+right: 20px;
+
+```
+width: 55px;
+height: 55px;
+
+border-radius: 50%;
+border: none;
+
+background: rgba(255,255,255,.2);
+backdrop-filter: blur(10px);
+
+color: white;
+font-size: 20px;
+
+cursor: pointer;
+
+transition: .3s;
+```
+
+}
+
+#musicBtn:hover{
+transform: scale(1.1);
+}
+
+#hiddenMessage{
+margin-top:20px;
+animation: fadeIn 2s ease;
+}
+
 </style>
 </head>
 
 <body>
     
-<button onclick="document.getElementById('music').play()">Play Music 🎵</button>
+<button onclick="document.getElementById('music').play()">Play Music 🎧</button>
 
 <audio id="music" loop>
   <source src="lagu.mp3" type="audio/mpeg">
 </audio>
 <div class="container">
     <h1>🎉 Happy Birthday🎉</h1>
-    <h2>🎉 Happy Birthday🎉</h2>
     <button onclick="showMessage()">Touch me 💌</button>
     <p id="hiddenMessage" style="display:none; margin-top:15px;">
-        Terima kasih sudah hadir di dunia ini 💖<br>
-        Semoga semua impian kamu tercapai 🌷
+      No matter how much time passes,<br><br>
+        you'll always have a special place
+        in my heart 🤍
     </p>
 </div>
 
 <script>
 function showMessage() {
+    let isPlaying = false;
+
+function toggleMusic(){
+
+    const music = document.getElementById("music");
+    const btn = document.getElementById("musicBtn");
+
+    if(isPlaying){
+        music.pause();
+        btn.innerHTML = "🎧";
+    }
+    else{
+        music.play();
+        btn.innerHTML = "🎶";
+    }
+
+    isPlaying = !isPlaying;
+}
     document.getElementById("hiddenMessage").style.display = "block";
 }
 
